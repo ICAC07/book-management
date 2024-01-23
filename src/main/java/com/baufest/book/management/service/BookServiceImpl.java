@@ -37,11 +37,6 @@ public class BookServiceImpl implements BookService {
 	@Transactional(readOnly = true)
 	public BookResponse get(Long id) throws BookBusinessException {
 		com.baufest.book.management.model.Book book = findById(id);
-		
-		if(book == null) {
-			throw new BookBusinessException(messageTraslator.get(Constant.Error.NOT_FOUND), HttpStatus.NOT_FOUND);
-		}
-		
 		return BookResponse.builder().data(Arrays.asList(mapper.to(book))).build();
 	}
 	
@@ -60,23 +55,23 @@ public class BookServiceImpl implements BookService {
 	public BookResponse delete(Long id) throws BookBusinessException {
 		try {
 			com.baufest.book.management.model.Book book = findById(id);
-			
-			if(book == null) {
-				throw new BookBusinessException(messageTraslator.get(Constant.Error.NOT_FOUND), HttpStatus.NOT_FOUND);
-			}
-			
-			repository.deleteById(id);
+			repository.deleteById(book.getId());
 			return BookResponse.builder().data(messageTraslator.get(Constant.Success.DELETE)).build();
+		}catch(BookBusinessException bbe) {
+			throw bbe; 
 		}catch(Exception se) {
 			log.error(messageTraslator.get(Constant.Error.DELETE, se.getMessage()));
 			throw new BookBusinessException(messageTraslator.get(Constant.Error.DELETE, se.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
 	}
 	
-	private com.baufest.book.management.model.Book findById(Long id){
+	private com.baufest.book.management.model.Book findById(Long id) throws BookBusinessException {
 		Optional<com.baufest.book.management.model.Book> opt = repository.findById(id);
 		// FIXME: Validar si se puede usar un IfPresentElse
-		return opt.isPresent()? opt.get(): null;
+		if(opt.isPresent())
+			return opt.get();
+		
+		throw new BookBusinessException(messageTraslator.get(Constant.Error.NOT_FOUND), HttpStatus.NOT_FOUND);
 	}
 
 }
