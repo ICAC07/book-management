@@ -1,0 +1,20 @@
+server:
+  port: 9090
+logging:
+  level:
+    org.springframework: info
+    com.baufest.book.management: info
+spring:
+  datasource:
+    url: jdbc:h2:mem:dbApp
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+    locale: en
+  h2:
+    console.enabled: true    
