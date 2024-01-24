@@ -1,4 +1,4 @@
-package com.baufest.book.management.config;
+package com.baufest.book.management.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

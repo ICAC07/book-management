@@ -1,4 +1,4 @@
-package com.baufest.book.management.config;
+package com.baufest.book.management.configuration;
 
 import java.util.Locale;
 import java.util.Objects;
