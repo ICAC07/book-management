@@ -1,9 +1,11 @@
 package com.baufest.book.management.service;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.data.util.Streamable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,8 +30,13 @@ public class BookServiceImpl implements BookService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public BookResponse getAll() {
-		return BookResponse.builder().data(mapper.toAll(Streamable.of(repository.findAll()).toList())).build();
+	public BookResponse getAll() throws BookBusinessException {
+		List<Book> books = mapper.toAll(Streamable.of(repository.findAll()).toList());
+		if(!books.isEmpty()) {
+			return BookResponse.builder().data(books).build();
+		}
+		
+		throw new BookBusinessException(messageTraslator.get(Constant.Error.NO_CONTENT), HttpStatus.NO_CONTENT);
 	}
 	
 	@Override
@@ -40,10 +47,10 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	@Override
-	public BookResponse add(Book data) throws BookBusinessException {
+	public ResponseEntity<BookResponse> add(Book data) throws BookBusinessException {
 		try {
 			com.baufest.book.management.model.Book book = repository.save(mapper.to(data));
-			return BookResponse.builder().data(Arrays.asList(mapper.to(book))).build();
+			return new ResponseEntity<>(BookResponse.builder().data(Arrays.asList(mapper.to(book))).build(), HttpStatus.CREATED);
 		}catch(Exception se) {
 			log.error(messageTraslator.get(Constant.Error.SAVE, se.getMessage()));
 			throw new BookBusinessException(messageTraslator.get(Constant.Error.SAVE, se.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR); 
@@ -51,11 +58,11 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public BookResponse delete(Long id) throws BookBusinessException {
+	public ResponseEntity<BookResponse> delete(Long id) throws BookBusinessException {
 		try {
 			com.baufest.book.management.model.Book book = findById(id);
 			repository.deleteById(book.getId());
-			return BookResponse.builder().data(messageTraslator.get(Constant.Success.DELETE)).build();
+			return new ResponseEntity<>(BookResponse.builder().data(messageTraslator.get(Constant.Success.DELETE)).build(), HttpStatus.ACCEPTED);
 		}catch(BookBusinessException bbe) {
 			throw bbe; 
 		}catch(Exception se) {
@@ -66,7 +73,7 @@ public class BookServiceImpl implements BookService {
 	
 	private com.baufest.book.management.model.Book findById(Long id) throws BookBusinessException {
 		return repository.findById(id).orElseThrow(
-					() ->  new BookBusinessException(messageTraslator.get(Constant.Error.NOT_FOUND), HttpStatus.NOT_FOUND));
+					() ->  new BookBusinessException(messageTraslator.get(Constant.Error.NO_CONTENT), HttpStatus.NO_CONTENT));
 	}
 
 }

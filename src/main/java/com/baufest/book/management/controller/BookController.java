@@ -26,7 +26,7 @@ public class BookController {
 	private BookService service;
 	
 	@GetMapping
-	public BookResponse getAll() {
+	public BookResponse getAll() throws BookBusinessException {
 		return service.getAll();
 	}
 	
@@ -36,12 +36,12 @@ public class BookController {
 	}
 	
 	@PostMapping
-	public BookResponse add(@RequestBody Book body) throws BookBusinessException {
+	public ResponseEntity<BookResponse> add(@RequestBody Book body) throws BookBusinessException {
 		return service.add(body);
 	}
 	
 	@DeleteMapping(value = Constant.EndPoint.ID)
-	public BookResponse delete(@PathVariable Long id) throws BookBusinessException {
+	public ResponseEntity<BookResponse> delete(@PathVariable Long id) throws BookBusinessException {
 		return service.delete(id);
 	}
 	

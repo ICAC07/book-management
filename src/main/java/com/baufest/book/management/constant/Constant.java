@@ -16,7 +16,7 @@ public class Constant {
 	}
 	
 	public static class Error {
-		public static final String NOT_FOUND	=	"error.not.found";
+		public static final String NO_CONTENT	=	"error.no.content";
 		public static final String SAVE 		= 	"error.save";
 		public static final String DELETE 		= 	"error.delete";
 	}
