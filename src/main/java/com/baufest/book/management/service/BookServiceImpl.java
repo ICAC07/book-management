@@ -1,7 +1,6 @@
 package com.baufest.book.management.service;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 import org.springframework.data.util.Streamable;
 import org.springframework.http.HttpStatus;
@@ -66,12 +65,8 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	private com.baufest.book.management.model.Book findById(Long id) throws BookBusinessException {
-		Optional<com.baufest.book.management.model.Book> opt = repository.findById(id);
-		// FIXME: Validar si se puede usar un IfPresentElse
-		if(opt.isPresent())
-			return opt.get();
-		
-		throw new BookBusinessException(messageTraslator.get(Constant.Error.NOT_FOUND), HttpStatus.NOT_FOUND);
+		return repository.findById(id).orElseThrow(
+					() ->  new BookBusinessException(messageTraslator.get(Constant.Error.NOT_FOUND), HttpStatus.NOT_FOUND));
 	}
 
 }

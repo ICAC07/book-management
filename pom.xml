@@ -47,9 +47,9 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-	        <groupId>org.mapstruct</groupId>
-	        <artifactId>mapstruct</artifactId>
-	        <version>${mapstruct.version}</version>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${mapstruct.version}</version>
 	    </dependency>
 		<!-- Test Unit -->
 		<dependency>
