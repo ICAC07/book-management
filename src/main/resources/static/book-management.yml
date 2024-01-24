@@ -1,0 +1,292 @@
+openapi: 3.0.2
+info:
+    title: book-management
+    version: 0.0.1
+    description: Book Manager API
+paths:
+    '/v1/api/book/{id}':
+        get:
+            tags:
+                - book-controller
+            parameters:
+                -
+                    name: username
+                    description: ''
+                    schema:
+                        type: string
+                    in: header
+                    required: true
+                -
+                    name: password
+                    description: ''
+                    schema:
+                        type: string
+                    in: header
+                    required: true
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/BookResponse'
+                            example:
+                                data:
+                                    -
+                                        id: 2
+                                        title: Matematicas 1
+                                        author: Baldor
+                                        isbn: 978-6075502090
+                                        quantity: 10
+                            examples:
+                                OK:
+                                    value:
+                                        data:
+                                            -
+                                                id: 2
+                                                title: Matematicas 1
+                                                author: Baldor
+                                                isbn: 978-6075502090
+                                                quantity: 10
+                    description: Recover book by id
+                '204':
+                    description: Books not founds
+            summary: Recover book by id
+            description: Recover book by id
+        delete:
+            tags:
+                - book-controller
+            parameters:
+                -
+                    name: username
+                    description: ''
+                    schema:
+                        type: string
+                    in: header
+                    required: true
+                -
+                    name: password
+                    description: ''
+                    schema:
+                        type: string
+                    in: header
+                    required: true
+            responses:
+                '202':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/BookResponse'
+                            example:
+                                data: Deleted successfully!
+                            examples:
+                                OK:
+                                    value:
+                                        data: Deleted successfully!
+                    description: Deleted successfully!
+                '500':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/BookResponse'
+                            example:
+                                data: {}
+                                error: 'Internal Server Error: Error in ...'
+                            examples:
+                                KO:
+                                    value:
+                                        data: {}
+                                        error: 'Internal Server Error: Error in ...'
+                    description: Unidentified code error
+            summary: Delete book by id
+            description: Delete book by id
+    /v1/api/book/health:
+        get:
+            tags:
+                - book-controller
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: boolean
+                            example: 'true'
+                    description: State of service
+            summary: Indicates whether the service is available
+            description: State of service
+    /v1/api/book:
+        get:
+            tags:
+                - book-controller
+            parameters:
+                -
+                    name: username
+                    description: ''
+                    schema:
+                        type: string
+                    in: header
+                    required: true
+                -
+                    name: password
+                    description: ''
+                    schema:
+                        type: string
+                    in: header
+                    required: true
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/BookResponse'
+                            example:
+                                data:
+                                    -
+                                        id: 1
+                                        title: Matematicas 1
+                                        author: Baldor
+                                        isbn: 978-6075502091
+                                        quantity: 10
+                                    -
+                                        id: 2
+                                        title: Matematicas 2
+                                        author: Baldor
+                                        isbn: 978-6075502092
+                                        quantity: 20
+                            examples:
+                                OK:
+                                    value:
+                                        data:
+                                            -
+                                                id: 1
+                                                title: Matematicas 1
+                                                author: Baldor
+                                                isbn: 978-6075502091
+                                                quantity: 10
+                                            -
+                                                id: 2
+                                                title: Matematicas 2
+                                                author: Baldor
+                                                isbn: 978-6075502092
+                                                quantity: 20
+                    description: Get All Books
+                '204':
+                    description: Books not founds
+            summary: Get all books
+            description: Get all books
+        post:
+            requestBody:
+                description: Structure of book to save
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Book'
+                        examples:
+                            New Book:
+                                value:
+                                    title: Matematicas 1
+                                    author: Baldor
+                                    isbn: 978-6075502090
+                                    quantity: 10
+                required: true
+            tags:
+                - book-controller
+            parameters:
+                -
+                    name: username
+                    description: ''
+                    schema:
+                        type: string
+                    in: header
+                    required: true
+                -
+                    name: password
+                    description: ''
+                    schema:
+                        type: string
+                    in: header
+                    required: true
+            responses:
+                '201':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/BookResponse'
+                            example:
+                                data:
+                                    -
+                                        id: 2
+                                        title: Matematicas 1
+                                        author: Baldor
+                                        isbn: 978-6075502090
+                                        quantity: 10
+                            examples:
+                                OK:
+                                    value:
+                                        data:
+                                            -
+                                                id: 2
+                                                title: Matematicas 1
+                                                author: Baldor
+                                                isbn: 978-6075502090
+                                                quantity: 10
+                    description: Book created
+                '500':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/BookResponse'
+                            example:
+                                data: {}
+                                error: 'Internal Server Error: Error in ...'
+                            examples:
+                                KO:
+                                    value:
+                                        data: {}
+                                        error: 'Internal Server Error: Error in ...'
+                    description: Unidentified code error
+            summary: Create new book
+            description: Create new book
+components:
+    schemas:
+        BookResponse:
+            description: Service response object
+            type: object
+            properties:
+                data:
+                    description: Successful response of consulted operation
+                error:
+                    description: Incorrect answer of the operation consulted
+                    type: string
+            example:
+                data: {}
+                error: some text
+        Book:
+            description: Structure of a book
+            required:
+                - title
+                - author
+                - isbn
+                - quantity
+            type: object
+            properties:
+                id:
+                    format: int64
+                    description: ''
+                    type: integer
+                title:
+                    description: ''
+                    type: string
+                author:
+                    description: ''
+                    type: string
+                isbn:
+                    description: ''
+                    type: string
+                quantity:
+                    description: ''
+                    type: integer
+            example:
+                title: Calculo Diferencial
+                author: Baldor
+                isbn: 978-1463346171
+                quantity: 68

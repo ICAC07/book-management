@@ -17,4 +17,6 @@ spring:
     encoding: UTF-8
     locale: en
   h2:
-    console.enabled: true    
+    console.enabled: true
+springdoc:
+  swagger-ui.url: /book-management.yml
