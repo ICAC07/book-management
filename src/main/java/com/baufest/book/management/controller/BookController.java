@@ -45,6 +45,11 @@ public class BookController {
 		return service.delete(id);
 	}
 	
+	@GetMapping(value= Constant.EndPoint.HEALTH)
+	public Boolean health() {
+		return Boolean.TRUE;
+	}
+	
 	@ExceptionHandler(BookBusinessException.class)
 	public ResponseEntity<BookResponse> bussinesException(BookBusinessException bbe) {
 		return new ResponseEntity<>(BookResponse.builder().error(bbe.getMessage()).build() , bbe.getStatusCode());

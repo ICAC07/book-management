@@ -6,6 +6,13 @@ public class Constant {
 	public static class EndPoint {
 		public static final String ROOT			= "/v1/api/book";
 		public static final String ID			= "/{id}";
+		public static final String HEALTH		= "/health";
+		public static final String COMODIN		= "/**";
+		
+		public static class Credential {
+			public static final String USER		= "admin";
+			public static final String PASS		= "secret";	
+		}
 	}
 	
 	public static class Error {
