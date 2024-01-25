@@ -26,6 +26,8 @@ import com.baufest.book.management.dto.BookResponse;
 import com.baufest.book.management.exception.BookBusinessException;
 import com.baufest.book.management.mapper.IMapper;
 import com.baufest.book.management.repository.BookRepository;
+import com.baufest.book.management.service.impl.BookServiceImpl;
+import com.baufest.book.management.service.impl.MessageTranslator;
 
 @ExtendWith(MockitoExtension.class)
 class BookServiceImplTest {

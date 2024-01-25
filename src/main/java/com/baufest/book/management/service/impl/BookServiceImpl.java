@@ -1,4 +1,4 @@
-package com.baufest.book.management.service;
+package com.baufest.book.management.service.impl;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +15,7 @@ import com.baufest.book.management.dto.BookResponse;
 import com.baufest.book.management.exception.BookBusinessException;
 import com.baufest.book.management.mapper.IMapper;
 import com.baufest.book.management.repository.BookRepository;
+import com.baufest.book.management.service.BookService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

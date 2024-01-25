@@ -1,4 +1,4 @@
-package com.baufest.book.management.service;
+package com.baufest.book.management.service.impl;
 
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
