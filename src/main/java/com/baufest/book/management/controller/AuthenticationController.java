@@ -21,8 +21,13 @@ public class AuthenticationController {
 	
 	private final AuthenticationService authenticationService;
 	
-    @PostMapping(Constant.EndPoint.Authentication.ACCESS_TOKEN)
-    public ResponseEntity<JwtAuthenticationResponse> accessToken(@RequestBody Credential request) {
-        return new ResponseEntity<>(authenticationService.accessToken(request), HttpStatus.CREATED);
+    @PostMapping(Constant.EndPoint.Authentication.REGISTER_CUSTOMER)
+    public ResponseEntity<JwtAuthenticationResponse> registerCustomer(@RequestBody Credential request) {
+        return new ResponseEntity<>(authenticationService.registerCustomer(request), HttpStatus.CREATED);
+    }
+    
+    @PostMapping(Constant.EndPoint.Authentication.GET_ACCESS_TOKEN)
+    public ResponseEntity<JwtAuthenticationResponse> getAccessToken(@RequestBody Credential request) {
+        return ResponseEntity.ok(authenticationService.getAccessToken(request));
     }
 }
