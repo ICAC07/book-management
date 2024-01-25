@@ -16,19 +16,5 @@ public class MessageLocaleConfiguration {
         Locale.setDefault(Objects.requireNonNull(StringUtils.parseLocale(locale)));
         return Locale.getDefault();
     }
-    /*
-    @Bean
-    public LocalValidatorFactoryBean validator(MessageSource messageSource) {
-        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-        bean.setValidationMessageSource(messageSource);
-        return bean;
-    }
-    
-    @Bean
-    public LocaleResolver localeResolver() {
-        FixedLocaleResolver localeResolver = new FixedLocaleResolver();
-        localeResolver.setDefaultLocale(Locale.getDefault());
-        return localeResolver;
-    }
-     */
+   
 }
