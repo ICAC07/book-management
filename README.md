@@ -52,9 +52,13 @@ java -jar ./target/book-management-0.0.1-SNAPSHOT.jar
 
 El endpoint **/v1/api/book**, está protegido. Mediante la autenticación básica en memoria, por lo que deberás usar las siguientes credenciales:
 
-| Username | Password |
-|:--------:|:--------:|
-| admin    | secret   |
+| Username | Password | Role  |
+|:--------:|:--------:|:-----:|
+| admin    | secret   | ADMIN |
+| user     | secret   | USER  |
+
+El usuario **user**, únicamente tiene acceso a las operaciones de consulta.
+El usuario **admin**, tiene acceso a todas las operaciones.
 
 El endpoint **/v1/api/book/health** no está protegido. Indica el estado del servicio.
 

@@ -2,6 +2,7 @@ package com.baufest.book.management.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,22 +27,28 @@ public class BookController {
 	
 	private BookService service;
 	
+	
 	@GetMapping
+	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 	public ResponseEntity<BookResponse> getAll() throws BookBusinessException {
 		return ResponseEntity.ok(service.getAll());
 	}
 	
+	
 	@GetMapping(value = Constant.EndPoint.ID)
+	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 	public ResponseEntity<BookResponse> getById(@PathVariable Long id) throws BookBusinessException {
 		return ResponseEntity.ok(service.get(id));
 	}
 	
 	@PostMapping
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<BookResponse> add(@RequestBody Book body) throws BookBusinessException {
 		return new ResponseEntity<>(service.add(body), HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping(value = Constant.EndPoint.ID)
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<BookResponse> delete(@PathVariable Long id) throws BookBusinessException {
 		return new ResponseEntity<>(service.delete(id), HttpStatus.ACCEPTED);
 	}

@@ -53,6 +53,8 @@ paths:
                     description: Recover book by id
                 '204':
                     description: Books not founds
+                '403':
+                    description: "Unauthorized operation\r\nUser without permission"
             summary: Recover book by id
             description: Recover book by id
         delete:
@@ -86,6 +88,8 @@ paths:
                                     value:
                                         data: Deleted successfully!
                     description: Deleted successfully!
+                '403':
+                    description: "Unauthorized operation\r\nUser without permission"
                 '500':
                     content:
                         application/json:
@@ -177,6 +181,8 @@ paths:
                     description: Get All Books
                 '204':
                     description: Books not founds
+                '403':
+                    description: "Unauthorized operation\r\nUser without permission"
             summary: Get all books
             description: Get all books
         post:
@@ -236,6 +242,8 @@ paths:
                                                 isbn: 978-6075502090
                                                 quantity: 10
                     description: Book created
+                '403':
+                    description: "Unauthorized operation\r\nUser without permission"
                 '500':
                     content:
                         application/json:

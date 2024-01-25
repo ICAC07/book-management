@@ -11,7 +11,8 @@ public class Constant {
 		public static final String[] SWAGGER	= {"/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/book-management.yml"};
 		
 		public static class Credential {
-			public static final String USER		= "admin";
+			public static final String ADMIN	= "admin";
+			public static final String USER		= "user";
 			public static final String PASS		= "secret";	
 		}
 	}
