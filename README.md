@@ -60,4 +60,4 @@ El endpoint **/v1/api/book/health** no está protegido. Indica el estado del ser
 
 
 ### Collections para Postman
-La collections se encuentra en el repositorio con el nombre del archivo **book-management-collections.json**
+La collections se encuentra en el repositorio con el nombre del archivo **BookManagement.postman_collection**
