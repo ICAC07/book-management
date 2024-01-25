@@ -13,18 +13,20 @@ import org.springframework.stereotype.Service;
 import com.baufest.book.management.service.JwtService;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 @Service
-public class JwtServiceImpl implements JwtService{
+public class JwtServiceImpl implements JwtService {
 	
 	@Value("${token.signing.key}")
     private String jwtSigningKey;
+	
     @Override
-    public String extractUserName(String token) {
+    public String extractUserName(String token) throws ExpiredJwtException {
         return extractClaim(token, Claims::getSubject);
     }
 

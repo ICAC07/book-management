@@ -8,19 +8,18 @@ info:
         System management of books
 paths:
     '/v1/api/book/{id}':
+        summary: Operations available for book by id
+        description: Operations available for book by id
         get:
             tags:
                 - book-controller
             parameters:
                 -
-                    name: username
-                    description: ''
-                    schema:
-                        type: string
-                    in: header
-                    required: true
-                -
-                    name: password
+                    examples:
+                        Token Access:
+                            value: >-
+                                eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzA2MjAyMjQ2LCJleHAiOjE3MDYyMDIzMDZ9.RdszR9NZlfWjHIOE3NG46M3r1lhuzQnzks6Q5ajtMG0
+                    name: token
                     description: ''
                     schema:
                         type: string
@@ -53,6 +52,10 @@ paths:
                     description: Recover book by id
                 '204':
                     description: Books not founds
+                '403':
+                    description: |-
+                        Unauthorized operation
+                        Invalid Token
             summary: Recover book by id
             description: Recover book by id
         delete:
@@ -60,14 +63,11 @@ paths:
                 - book-controller
             parameters:
                 -
-                    name: username
-                    description: ''
-                    schema:
-                        type: string
-                    in: header
-                    required: true
-                -
-                    name: password
+                    examples:
+                        Token Access:
+                            value: >-
+                                eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzA2MjAyMjQ2LCJleHAiOjE3MDYyMDIzMDZ9.RdszR9NZlfWjHIOE3NG46M3r1lhuzQnzks6Q5ajtMG0
+                    name: token
                     description: ''
                     schema:
                         type: string
@@ -86,6 +86,10 @@ paths:
                                     value:
                                         data: Deleted successfully!
                     description: Deleted successfully!
+                '403':
+                    description: |-
+                        Unauthorized operation
+                        Invalid Token
                 '500':
                     content:
                         application/json:
@@ -103,6 +107,7 @@ paths:
             summary: Delete book by id
             description: Delete book by id
     /v1/api/book/health:
+        description: API Status
         get:
             tags:
                 - book-controller
@@ -120,19 +125,18 @@ paths:
             summary: Indicates whether the service is available
             description: State of service
     /v1/api/book:
+        summary: Operations available for the book
+        description: Operations available for the book
         get:
             tags:
                 - book-controller
             parameters:
                 -
-                    name: username
-                    description: ''
-                    schema:
-                        type: string
-                    in: header
-                    required: true
-                -
-                    name: password
+                    examples:
+                        Token Access:
+                            value: >-
+                                eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzA2MjAyMjQ2LCJleHAiOjE3MDYyMDIzMDZ9.RdszR9NZlfWjHIOE3NG46M3r1lhuzQnzks6Q5ajtMG0
+                    name: token
                     description: ''
                     schema:
                         type: string
@@ -177,6 +181,10 @@ paths:
                     description: Get All Books
                 '204':
                     description: Books not founds
+                '403':
+                    description: |-
+                        Unauthorized operation
+                        Invalid Token 
             summary: Get all books
             description: Get all books
         post:
@@ -198,14 +206,11 @@ paths:
                 - book-controller
             parameters:
                 -
-                    name: username
-                    description: ''
-                    schema:
-                        type: string
-                    in: header
-                    required: true
-                -
-                    name: password
+                    examples:
+                        Token Access:
+                            value: >-
+                                eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzA2MjAyMjQ2LCJleHAiOjE3MDYyMDIzMDZ9.RdszR9NZlfWjHIOE3NG46M3r1lhuzQnzks6Q5ajtMG0
+                    name: token
                     description: ''
                     schema:
                         type: string
@@ -236,6 +241,10 @@ paths:
                                                 isbn: 978-6075502090
                                                 quantity: 10
                     description: Book created
+                '403':
+                    description: |-
+                        Unauthorized operation
+                        Invalid Token
                 '500':
                     content:
                         application/json:
@@ -252,6 +261,46 @@ paths:
                     description: Unidentified code error
             summary: Create new book
             description: Create new book
+    /v1/api/auth/accessToken:
+        summary: Generate access token
+        description: Generate access token
+        post:
+            requestBody:
+                description: Generating token to user
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Credential'
+                        examples:
+                            Credential of user:
+                                value:
+                                    username: user
+                                    password: secret
+                required: true
+            tags:
+                - authentication-controller
+            responses:
+                '201':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/JwtAuthenticationResponse'
+                            example:
+                                data:
+                                    -
+                                        id: 2
+                                        title: Matematicas 1
+                                        author: Baldor
+                                        isbn: 978-6075502090
+                                        quantity: 10
+                            examples:
+                                OK:
+                                    value:
+                                        token: >-
+                                            eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzA2MjAxMzE5LCJleHAiOjE3MDYyMDEzNzl9.ZQgUeaxjctKyZ22adbdeBMtgNlpr9E_I4B__fBgfLzk
+                    description: Access token created
+            summary: Get access token
+            description: Get access token
 components:
     schemas:
         BookResponse:
@@ -296,3 +345,31 @@ components:
                 author: Baldor
                 isbn: 978-1463346171
                 quantity: 68
+        Credential:
+            description: Credential user creation data
+            required:
+                - username
+                - password
+            type: object
+            properties:
+                username:
+                    description: ''
+                    type: string
+                password:
+                    description: ''
+                    type: string
+            example:
+                username: user
+                password: secret
+        JwtAuthenticationResponse:
+            description: Token generated
+            required:
+                - token
+            type: object
+            properties:
+                token:
+                    description: ''
+                    type: string
+            example:
+                token: >-
+                    eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzA2MjAxMzE5LCJleHAiOjE3MDYyMDEzNzl9.ZQgUeaxjctKyZ22adbdeBMtgNlpr9E_I4B__fBgfLzk

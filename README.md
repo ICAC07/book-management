@@ -51,3 +51,16 @@ IMPORTANTE:
 	De aqui en adelante queda pendiente de actualizar la documentación del README.md y el archivo swagger (boo-management.yml).
 	Debido a que este branch, maneja la seguridad mediante un JWT.
 
+### Generar token de acceso
+El endpoint **/v1/api/book**, está protegido. Mediante la autorización de un token de acceso (JWT).
+
+Deberás generar el token de acceso, consumiendo la operación **/v1/api/auth/accessToken**. Indicar un usuario y password, internamente se generará un usuario y te devolverá un token.
+
+### Estado del API
+Podrás consultarlo mediante el endpoint **/v1/api/book/health**. No está protegido.
+
+### Documentación del API
+[API Documentación](http://localhost:9090/swagger-ui/index.html)
+
+### Collections para Postman
+La collections se encuentra en el repositorio con el nombre del archivo **BookManagement_Auth_Token.postman_collection**

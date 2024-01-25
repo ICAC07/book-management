@@ -13,19 +13,18 @@ public class Constant {
 		public static final String[] OTHERS		= {"/h2-console/**"};
 		
 		public static class Authentication {
-			public static final String ROOT		= "/v1/api/auth";
-			public static final String SIGNIN	= "/signin";
-			public static final String SIGNUP	= "/signup";
-			
-			public static final String ROOT_COM	= ROOT + COMODIN;
+			public static final String ROOT			= "/v1/api/auth";
+			public static final String ACCESS_TOKEN	= "/accessToken";
+			public static final String ROOT_COM		= ROOT + COMODIN;
 
 		}
 	}
 	
 	public static class Error {
-		public static final String NO_CONTENT	=	"error.no.content";
-		public static final String SAVE 		= 	"error.save";
-		public static final String DELETE 		= 	"error.delete";
+		public static final String NO_CONTENT		=	"error.no.content";
+		public static final String SAVE 			= 	"error.save";
+		public static final String DELETE 			= 	"error.delete";
+		public static final String USER_NOT_FOUND 	= 	"error.user.not.found";
 	}
 	
 	public static class Success {
