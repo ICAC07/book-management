@@ -11,10 +11,12 @@
 	<groupId>com.baufest</groupId>
 	<artifactId>book-management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>book-management</name>
 	<description>Book mananment system</description>
 	
 	<properties>
+		<start-class>com.baufest.book.management.BookManagementApplication</start-class>
 		<java.version>21</java.version>
 		<lombok.version>1.18.30</lombok.version>
   		<mapstruct.version>1.5.4.Final</mapstruct.version>
@@ -68,7 +70,7 @@
 
 	<build>
 		<plugins>
-			<!--plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
@@ -79,7 +81,7 @@
 						</exclude>
 					</excludes>
 				</configuration>
-			</plugin-->
+			</plugin>
 			<plugin>
 	            <groupId>org.apache.maven.plugins</groupId>
 	            <artifactId>maven-compiler-plugin</artifactId>
