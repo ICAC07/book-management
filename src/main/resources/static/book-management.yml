@@ -2,7 +2,10 @@ openapi: 3.0.2
 info:
     title: book-management
     version: 0.0.1
-    description: Book Manager API
+    description: |-
+        Book Manager API
+
+        System management of books
 paths:
     '/v1/api/book/{id}':
         get:
