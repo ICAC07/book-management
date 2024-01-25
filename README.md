@@ -47,17 +47,11 @@ mvn spring-boot:run
 java -jar ./target/book-management-0.0.1-SNAPSHOT.jar
 ```
 
-### Documentación del API
-[API Documentación](http://localhost:9090/swagger-ui/index.html)
 
-El endpoint **/v1/api/book**, está protegido, por lo que deberás usar las siguientes credenciales:
-
-| Username | Password |
-|:--------:|:--------:|
-| admin    | secret   |
-
-El endpoint **/v1/api/book/health** no está protegido. Indica el estado del servicio
-
-
-### Collections para Postman
-La collections se encuentra en el repositorio con el nombre del archivo **BookManagement.postman_collection**
+IMPORTANTE:
+	De aqui en adelante queda pendiente de actualizar la documentación del README.md y el archivo swagger (boo-management.yml).
+	Debido a que este branch, maneja la seguridad mediante un JWT.
+	
+	
+### Documentación del API (Pendiente, de actualizar)
+### Collections para Postman (Pendiente, de actualizar)
