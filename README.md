@@ -27,21 +27,21 @@ API Rest que gestiona la administración de libros. Permite operaciones como:
 
 ### Ejecutar
 
-## Compilación
+#### Compilación
 
 ```java
 mvn clean install
 ```
 
-2. Levantar el proyecto
+#### Levantar el proyecto
 
-2.1 Con comando de maven
+1. Con comando de maven
 
 ```java
 mvn spring-boot:run
 ```
 
-2.2 Desde el JAR  
+2. Desde el JAR  
 
 ```java
 java -jar ./target/book-management-0.0.1-SNAPSHOT.jar

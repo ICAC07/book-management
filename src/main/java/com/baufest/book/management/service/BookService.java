@@ -11,4 +11,5 @@ public interface BookService {
 	BookResponse get(Long id) throws BookBusinessException;
 	ResponseEntity<BookResponse> add(Book book) throws BookBusinessException;
 	ResponseEntity<BookResponse> delete(Long id) throws BookBusinessException;
+	String health();
 }

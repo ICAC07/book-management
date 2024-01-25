@@ -46,8 +46,8 @@ public class BookController {
 	}
 	
 	@GetMapping(value= Constant.EndPoint.HEALTH)
-	public Boolean health() {
-		return Boolean.TRUE;
+	public String health() {
+		return service.health();
 	}
 	
 	@ExceptionHandler(BookBusinessException.class)

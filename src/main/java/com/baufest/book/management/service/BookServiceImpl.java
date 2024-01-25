@@ -71,6 +71,11 @@ public class BookServiceImpl implements BookService {
 		}
 	}
 	
+	@Override
+	public String health() {
+		return messageTraslator.get(Constant.Success.HEALTH);
+	}
+	
 	private com.baufest.book.management.model.Book findById(Long id) throws BookBusinessException {
 		return repository.findById(id).orElseThrow(
 					() ->  new BookBusinessException(messageTraslator.get(Constant.Error.NO_CONTENT), HttpStatus.NO_CONTENT));

@@ -24,6 +24,7 @@ public class Constant {
 	
 	public static class Success {
 		public static final String DELETE 		=	"success.delete";
+		public static final String HEALTH 		=	"health";
 	}
 	
 	

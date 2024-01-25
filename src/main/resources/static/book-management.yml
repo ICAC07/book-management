@@ -108,8 +108,11 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: boolean
+                                type: string
                             example: 'true'
+                            examples:
+                                OK:
+                                    value: API Enabled
                     description: State of service
             summary: Indicates whether the service is available
             description: State of service
