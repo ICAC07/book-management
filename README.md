@@ -47,10 +47,6 @@ mvn spring-boot:run
 java -jar ./target/book-management-0.0.1-SNAPSHOT.jar
 ```
 
-IMPORTANTE:
-	De aqui en adelante queda pendiente de actualizar la documentación del README.md y el archivo swagger (boo-management.yml).
-	Debido a que este branch, maneja la seguridad mediante un JWT.
-
 ### Generar token de acceso
 El endpoint **/v1/api/book**, está protegido. Mediante la autorización de un token de acceso (JWT).
 
