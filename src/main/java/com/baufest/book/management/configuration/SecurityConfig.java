@@ -8,7 +8,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -40,7 +39,7 @@ public class SecurityConfig {
         			.requestMatchers(HttpMethod.GET, Constant.EndPoint.ROOT.concat(Constant.EndPoint.HEALTH)).permitAll()
         			.requestMatchers(Constant.EndPoint.SWAGGER).permitAll()
         			.requestMatchers(Constant.EndPoint.OTHERS).permitAll()
-        			.requestMatchers("/api/v1/auth/**").permitAll()
+        			.requestMatchers(Constant.EndPoint.Authentication.ROOT_COM).permitAll()
         			.anyRequest().authenticated()
         )
         .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))	
@@ -50,18 +49,6 @@ public class SecurityConfig {
         
         return http.build();
     }
-    /*
-    @Bean
-    public UserDetailsService userDetailsService() {
-    	PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    	 UserDetails user = User.withUsername(Constant.EndPoint.Credential.USER)
-    	            .password(encoder.encode(Constant.EndPoint.Credential.PASS))
-    	            .roles("ADMIN")
-    	            .build();
-
-        return new InMemoryUserDetailsManager(user);
-    }
-    */
     
     @Bean
     public WebMvcConfigurer corsConfigurer() {

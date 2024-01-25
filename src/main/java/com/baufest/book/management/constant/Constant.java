@@ -1,6 +1,7 @@
 package com.baufest.book.management.constant;
 
 public class Constant {
+
 	private Constant() {}
 	
 	public static class EndPoint {
@@ -11,9 +12,13 @@ public class Constant {
 		public static final String[] SWAGGER	= {"/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/book-management.yml"};
 		public static final String[] OTHERS		= {"/h2-console/**"};
 		
-		public static class Credential {
-			public static final String USER		= "admin";
-			public static final String PASS		= "secret";	
+		public static class Authentication {
+			public static final String ROOT		= "/v1/api/auth";
+			public static final String SIGNIN	= "/signin";
+			public static final String SIGNUP	= "/signup";
+			
+			public static final String ROOT_COM	= ROOT + COMODIN;
+
 		}
 	}
 	
@@ -27,7 +32,5 @@ public class Constant {
 		public static final String DELETE 		=	"success.delete";
 		public static final String HEALTH 		=	"health";
 	}
-	
-	
 
 }
