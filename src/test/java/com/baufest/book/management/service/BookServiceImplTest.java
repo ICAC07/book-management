@@ -18,8 +18,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import com.baufest.book.management.dto.Book;
 import com.baufest.book.management.dto.BookResponse;
@@ -135,12 +133,11 @@ class BookServiceImplTest {
 		when(mapper.to(entityCom)).thenReturn(bookResponse);
 		
 		// Execute Test
-		ResponseEntity<BookResponse> response = service.add(book);
+		BookResponse response = service.add(book);
 		
 		// Validation
 		assertNotNull(response);
-		assertEquals(((List<Book>) response.getBody().getData()).size(), 1);
-		assertEquals(HttpStatus.CREATED, response.getStatusCode());
+		assertEquals(((List<Book>) response.getData()).size(), 1);
 	}
 	
 	@DisplayName("Create book with Exception")
@@ -172,12 +169,11 @@ class BookServiceImplTest {
 		when(messageTranslator.get(anyString())).thenReturn("Deleted successfully!");
 		
 		// Execute Test
-		ResponseEntity<BookResponse> response = service.delete(id);
+		BookResponse response = service.delete(id);
 		
 		// Validation
 		assertNotNull(response);
-		assertEquals(((String) response.getBody().getData()), "Deleted successfully!");
-		assertEquals(HttpStatus.ACCEPTED, response.getStatusCode());
+		assertEquals(((String) response.getData()), "Deleted successfully!");
 	}
 	
 	@DisplayName("Deleted with Exception")

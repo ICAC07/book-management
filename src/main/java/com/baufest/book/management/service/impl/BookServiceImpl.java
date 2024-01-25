@@ -48,10 +48,10 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	@Override
-	public ResponseEntity<BookResponse> add(Book data) throws BookBusinessException {
+	public BookResponse add(Book data) throws BookBusinessException {
 		try {
 			com.baufest.book.management.model.Book book = repository.save(mapper.to(data));
-			return new ResponseEntity<>(BookResponse.builder().data(Arrays.asList(mapper.to(book))).build(), HttpStatus.CREATED);
+			return BookResponse.builder().data(Arrays.asList(mapper.to(book))).build();
 		}catch(Exception se) {
 			log.error(messageTraslator.get(Constant.Error.SAVE, se.getMessage()));
 			throw new BookBusinessException(messageTraslator.get(Constant.Error.SAVE, se.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR); 
@@ -59,11 +59,11 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public ResponseEntity<BookResponse> delete(Long id) throws BookBusinessException {
+	public BookResponse delete(Long id) throws BookBusinessException {
 		try {
 			com.baufest.book.management.model.Book book = findById(id);
 			repository.deleteById(book.getId());
-			return new ResponseEntity<>(BookResponse.builder().data(messageTraslator.get(Constant.Success.DELETE)).build(), HttpStatus.ACCEPTED);
+			return BookResponse.builder().data(messageTraslator.get(Constant.Success.DELETE)).build();
 		}catch(BookBusinessException bbe) {
 			throw bbe; 
 		}catch(Exception se) {
