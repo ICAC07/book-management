@@ -81,7 +81,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/v1/api/book/3",
+					"raw": "http://localhost:9090/v1/api/book/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -91,7 +91,7 @@
 						"v1",
 						"api",
 						"book",
-						"3"
+						"1"
 					]
 				}
 			},
@@ -101,12 +101,26 @@
 			"name": "Add",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"type": "basic",
+					"basic": [
 						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTcwNjE2NjIyMSwiZXhwIjoxNzA2MTY2MjgxfQ.f1F5MvTRA8awspSg6OFCbgCanhpv39-_FWGX-O-SSp8",
+							"key": "password",
+							"value": "secret",
 							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
 						}
 					]
 				},
@@ -167,7 +181,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/v1/api/book/1",
+					"raw": "http://localhost:9090/v1/api/book/10",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -177,7 +191,7 @@
 						"v1",
 						"api",
 						"book",
-						"1"
+						"10"
 					]
 				}
 			},
