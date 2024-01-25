@@ -50,7 +50,7 @@ java -jar ./target/book-management-0.0.1-SNAPSHOT.jar
 ### Documentación del API
 [API Documentación](http://localhost:9090/swagger-ui/index.html)
 
-El endpoint **/v1/api/book**, está protegido. Mediante la autenticación básica en memoria, por lo que deberás usar las siguientes credenciales:
+El endpoint **/v1/api/book**, está protegido. Mediante la autorización básica en memoria, por lo que deberás usar las siguientes credenciales:
 
 | Username | Password | Role  |
 |:--------:|:--------:|:-----:|
