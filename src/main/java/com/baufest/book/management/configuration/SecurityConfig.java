@@ -29,7 +29,7 @@ public class SecurityConfig {
         http
         	.authorizeHttpRequests(authorize -> authorize
         			.requestMatchers(HttpMethod.GET, Constant.EndPoint.ROOT.concat(Constant.EndPoint.HEALTH)).permitAll()
-        			.requestMatchers(Constant.EndPoint.ROOT.concat("/api-docs/**"), Constant.EndPoint.ROOT.concat("/swagger-ui/**")).permitAll()
+        			.requestMatchers(Constant.EndPoint.SWAGGER).permitAll()
         			.anyRequest().authenticated()
         	
         )

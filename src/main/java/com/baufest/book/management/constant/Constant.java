@@ -8,6 +8,7 @@ public class Constant {
 		public static final String ID			= "/{id}";
 		public static final String HEALTH		= "/health";
 		public static final String COMODIN		= "/**";
+		public static final String[] SWAGGER	= {"/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/book-management.yml"};
 		
 		public static class Credential {
 			public static final String USER		= "admin";
