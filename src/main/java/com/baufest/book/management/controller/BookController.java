@@ -1,5 +1,6 @@
 package com.baufest.book.management.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -26,28 +27,28 @@ public class BookController {
 	private BookService service;
 	
 	@GetMapping
-	public BookResponse getAll() throws BookBusinessException {
-		return service.getAll();
+	public ResponseEntity<BookResponse> getAll() throws BookBusinessException {
+		return ResponseEntity.ok(service.getAll());
 	}
 	
 	@GetMapping(value = Constant.EndPoint.ID)
-	public BookResponse getById(@PathVariable Long id) throws BookBusinessException {
-		return service.get(id);
+	public ResponseEntity<BookResponse> getById(@PathVariable Long id) throws BookBusinessException {
+		return ResponseEntity.ok(service.get(id));
 	}
 	
 	@PostMapping
 	public ResponseEntity<BookResponse> add(@RequestBody Book body) throws BookBusinessException {
-		return service.add(body);
+		return new ResponseEntity<>(service.add(body), HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping(value = Constant.EndPoint.ID)
 	public ResponseEntity<BookResponse> delete(@PathVariable Long id) throws BookBusinessException {
-		return service.delete(id);
+		return new ResponseEntity<>(service.delete(id), HttpStatus.ACCEPTED);
 	}
 	
 	@GetMapping(value= Constant.EndPoint.HEALTH)
-	public String health() {
-		return service.health();
+	public ResponseEntity<String> health() {
+		return ResponseEntity.ok(service.health());
 	}
 	
 	@ExceptionHandler(BookBusinessException.class)

@@ -50,14 +50,14 @@ java -jar ./target/book-management-0.0.1-SNAPSHOT.jar
 ### Documentación del API
 [API Documentación](http://localhost:9090/swagger-ui/index.html)
 
-El endpoint **/v1/api/book**, está protegido, por lo que deberás usar las siguientes credenciales:
+El endpoint **/v1/api/book**, está protegido. Mediante la autenticación básica en memoria, por lo que deberás usar las siguientes credenciales:
 
 | Username | Password |
 |:--------:|:--------:|
 | admin    | secret   |
 
-El endpoint **/v1/api/book/health** no está protegido. Indica el estado del servicio
+El endpoint **/v1/api/book/health** no está protegido. Indica el estado del servicio.
 
 
 ### Collections para Postman
-La collections se encuentra en el repositorio con el nombre del archivo **BookManagement.postman_collection**
+La collections se encuentra en el repositorio con el nombre del archivo **BookManagement_Auth_Basic.postman_collection**

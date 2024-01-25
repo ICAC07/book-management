@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "a8e6ef2f-d77e-445e-bf08-663777732c41",
-		"name": "BookManagement",
+		"name": "BookManagement - Auth Basic",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "17564155"
 	},
@@ -101,26 +101,12 @@
 			"name": "Add",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "password",
-							"value": "secret",
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTcwNjE2NjIyMSwiZXhwIjoxNzA2MTY2MjgxfQ.f1F5MvTRA8awspSg6OFCbgCanhpv39-_FWGX-O-SSp8",
 							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "admin",
-							"type": "string"
-						},
-						{
-							"key": "saveHelperData",
-							"type": "any"
-						},
-						{
-							"key": "showPassword",
-							"value": false,
-							"type": "boolean"
 						}
 					]
 				},
