@@ -50,7 +50,9 @@ java -jar ./target/book-management-0.0.1-SNAPSHOT.jar
 ### Generar token de acceso
 El endpoint **/v1/api/book**, está protegido. Mediante la autorización de un token de acceso (JWT).
 
-Deberás generar el token de acceso, consumiendo la operación **/v1/api/auth/accessToken**. Indicar un usuario y password, internamente se generará un usuario y te devolverá un token.
+Seguir los siguientes pasos para generar el token de acceso:
+1. Dar de alta el cliente por primera vez, consumiendo la operación **/v1/api/auth/registerCustomer**. Este punto es necesario repetirlo, tantos clientes queramos dar de alta.
+2. Generar el token de acceso, consumiendo la operación **/v1/api/auth/accessToken** . En caso de llegar a necesitar un nuevo token, volver a ejecutar este punto.
 
 ### Estado del API
 Podrás consultarlo mediante el endpoint **/v1/api/book/health**. No está protegido.

@@ -280,6 +280,39 @@ paths:
             tags:
                 - authentication-controller
             responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/JwtAuthenticationResponse'
+                            examples:
+                                'New token ':
+                                    value:
+                                        token: >-
+                                            eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzA2MjAxMzE5LCJleHAiOjE3MDYyMDEzNzl9.ZQgUeaxjctKyZ22adbdeBMtgNlpr9E_I4B__fBgfLzk
+                    description: Access token created
+            summary: Get access token
+            description: Get access token. Role no requiered.
+    /v1/api/auth/registerCustomer:
+        summary: Register new client and generate token access
+        description: Register new client and generate token access
+        post:
+            requestBody:
+                description: Register new client
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Credential'
+                        examples:
+                            Credential of user:
+                                value:
+                                    username: user
+                                    password: secret
+                                    role: USER
+                required: true
+            tags:
+                - authentication-controller
+            responses:
                 '201':
                     content:
                         application/json:
@@ -298,9 +331,9 @@ paths:
                                     value:
                                         token: >-
                                             eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzA2MjAxMzE5LCJleHAiOjE3MDYyMDEzNzl9.ZQgUeaxjctKyZ22adbdeBMtgNlpr9E_I4B__fBgfLzk
-                    description: Access token created
-            summary: Get access token
-            description: Get access token
+                    description: Added client and access token generated
+            summary: Register new client and generate token access
+            description: Register new client and generate token access. Role is requerid
 components:
     schemas:
         BookResponse:
@@ -358,9 +391,16 @@ components:
                 password:
                     description: ''
                     type: string
+                role:
+                    description: ''
+                    enum:
+                        - USER
+                        - ADMIN
+                    type: string
             example:
                 username: user
                 password: secret
+                role: USER
         JwtAuthenticationResponse:
             description: Token generated
             required:
